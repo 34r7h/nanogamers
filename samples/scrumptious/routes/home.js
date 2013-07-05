@@ -61,9 +61,7 @@ exports.loginCallback = function (req, res, next) {
                 parameters.access_token     = req.session.access_token;
 
                 console.log(parameters);
-                FB.api('/me', function(response) {
-            console.log(response);
-            });
+                
 
                 FB.api('/me/' + config.facebook.appNamespace +':play', 'post', parameters , function (result) {
                     console.log(result);

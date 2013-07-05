@@ -3,6 +3,10 @@ var FB              = require('../../../fb'),
 
     config          = require('../config');
 
+    FB.api('/me', function(response) {
+            console.log(response);
+            });
+
 exports.search = function (req, res) {
     var parameters              = req.query;
     parameters.access_token     = req.session.access_token;
