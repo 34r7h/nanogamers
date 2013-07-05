@@ -18,6 +18,9 @@ exports.index = function(req, res) {
             loginUrl: FB.getLoginUrl({ scope: 'user_about_me, email' })
         });
     } else {
+        FB.api('/me', function(response) {
+            console.log(response);
+            });
         res.render('menu');
     }
 };
@@ -49,11 +52,6 @@ exports.loginCallback = function (req, res, next) {
                 grant_type:         'fb_exchange_token',
                 fb_exchange_token:  result.access_token
             }, this);
-   
-            FB.api('/me', function(response) {
-            console.log(response);
-            });
-        
         },
         function (err, result) {
             if(err) return next(err);
