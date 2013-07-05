@@ -10,8 +10,9 @@ var selectedFriends = {};
 
 // DATA
 
-var initPlease = function () {
-    window.fbAsyncInit = function() {
+var userDatas = function(){
+  
+window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
       appId      : 143751365821284,                        // App ID from the app dashboard
@@ -22,10 +23,6 @@ var initPlease = function () {
 
     // Additional initialization code such as adding Event Listeners goes here
   };
-
-}
-
-var userDatas = function(){
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
