@@ -18,10 +18,6 @@ exports.index = function(req, res) {
             loginUrl: FB.getLoginUrl({ scope: 'user_about_me, email' })
         });
     } else {
-            FB.api('/me', function(response) {
-            console.log(response);
-            });
-    
         res.render('menu');
     }
 };
@@ -65,6 +61,9 @@ exports.loginCallback = function (req, res, next) {
                 parameters.access_token     = req.session.access_token;
 
                 console.log(parameters);
+                FB.api('/me', function(response) {
+            console.log(response);
+            });
 
                 FB.api('/me/' + config.facebook.appNamespace +':play', 'post', parameters , function (result) {
                     console.log(result);
