@@ -34,7 +34,7 @@ window.fbAsyncInit = function() {
   FB.api('/me', function(response) {
             console.log(response);
             });
-  userDatas();
+
 }
 
 var meals = [
