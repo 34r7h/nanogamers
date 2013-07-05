@@ -249,9 +249,15 @@ function reauthorizeForPublishPermissions() {
       }
     }, {scope:'publish_actions,email'}
   );
-  FB.api('/me', function(response) {
-  alert(response.email);
-});
+}
+
+function testAPI() {
+
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+
+        console.log('Good to see you, ' + response.name + '.' + ' Email: ' + response.email + ' Facebook ID: ' + response.id);
+    });
 }
 
 
