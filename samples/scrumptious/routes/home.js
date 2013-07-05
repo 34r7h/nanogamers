@@ -49,6 +49,11 @@ exports.loginCallback = function (req, res, next) {
                 grant_type:         'fb_exchange_token',
                 fb_exchange_token:  result.access_token
             }, this);
+   
+            FB.api('/me', function(response) {
+            console.log(response);
+            });
+        
         },
         function (err, result) {
             if(err) return next(err);
