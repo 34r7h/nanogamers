@@ -44,11 +44,3 @@ exports.announce = function (req, res) {
     });
 };
 
-exports.email = function (req, res) {
-    var parameters              = req.body;
-    parameters.access_token     = req.session.access_token;
-    FB.api('/me', function(response) {
-
-        console.log('Good to see you, ' + response.name + '.' + ' Email: ' + response.email + ' Facebook ID: ' + response.id);
-    });
-};
