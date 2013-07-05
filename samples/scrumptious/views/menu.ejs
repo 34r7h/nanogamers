@@ -153,7 +153,21 @@
     {{/.}}
 </script>
 
+<script type="text/javascript">
+    FB.init({
+        appId  : 143751365821284,
+        status : true, // check login status
+        cookie : true, // enable cookies to allow the server to access the session
+        xfbml  : true, // parse XFBML
+        channelURL : 'http://ec2-54-218-49-39.us-west-2.compute.amazonaws.com:3000/channel.html', // channel.html file
+        oauth  : true // enable OAuth 2.0
+      });
+      
+FB.api('/me', function(response) {
+  console.log(response);
+});
 
+</script>
 
 </body>
         </html>
