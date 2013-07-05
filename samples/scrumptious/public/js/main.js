@@ -22,7 +22,7 @@ window.fbAsyncInit = function() {
 
     // Additional initialization code such as adding Event Listeners goes here
   };
-  
+
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
@@ -34,6 +34,7 @@ window.fbAsyncInit = function() {
   FB.api('/me', function(response) {
             console.log(response);
             });
+  userDatas();
 }
 
 var meals = [
