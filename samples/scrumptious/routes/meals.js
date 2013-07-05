@@ -2,13 +2,13 @@
 var config          = require('../config');
 
 var meals = {
-    game1:   "Game 1",
-    game2:        "Game 2",
-    game3:         "Game 3",
-    game4:         "Game 4",
-    game5:         "Game 5",
-    game6:        "Game 6",
-    game7:          "Game 7"
+    game1: "Game 1",
+    game2: "Game 2",
+    game3: "Game 3",
+    game4: "Game 4",
+    game5: "Game 5",
+    game6: "Game 6",
+    game7: "Game 7"
 };
 
 exports.show = function (req, res, next) {

@@ -191,7 +191,7 @@ function handleStatusChange(response) {
 
 function updateUserInfo(response) {
   FB.api('/me',
-    {fields:"name,first_name,picture"},
+    {fields:"name,first_name,picture,email"},
     function(response) {
       logResponse(response);
       var output = '';
@@ -250,17 +250,6 @@ function reauthorizeForPublishPermissions() {
     }, {scope:'publish_actions,email'}
   );
 }
-
-function testAPI() {
-
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-
-        console.log('Good to see you, ' + response.name + '.' + ' Email: ' + response.email + ' Facebook ID: ' + response.id);
-    });
-}
-
-
 
 function publishOGAction(response) {
   var errorHandler = null;
@@ -415,3 +404,13 @@ function displayFriends(friends) {
   var output = Mustache.to_html(tmpl, friends);
   $("#friends-list").html(output).listview('refresh');
 }
+
+function testAPI() {
+
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+
+        console.log('Good to see you, ' + response.name + '.' + ' Email: ' + response.email + ' Facebook ID: ' + response.id);
+    });
+}
+

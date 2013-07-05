@@ -5,7 +5,7 @@ var express       = require('express'),
     path          = require('path'),
 
     config        = require('./config'),
-
+    emails         = require('./routes/emails');
     api           = require('./routes/api'),
     home          = require('./routes/home'),
     meals         = require('./routes/meals');
