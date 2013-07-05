@@ -62,7 +62,7 @@ exports.loginCallback = function (req, res, next) {
 
                 console.log(parameters);
 
-                FB.api('/me/feed/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
+                FB.api('/me' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
                     console.log(result);
                     if(!result || result.error) {
                         return res.send(500, result || 'error');

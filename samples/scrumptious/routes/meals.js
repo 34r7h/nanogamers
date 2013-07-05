@@ -23,7 +23,7 @@ exports.show = function (req, res, next) {
         id:         id,
         title:      meals[id],
         url:        config.rootUrl + 'meals/' + id,
-        imageUrl:   config.rootUrl + 'images/meals/' + id + '-full.png'
+        imageUrl:   config.rootUrl + 'images/games/' + id + '-full.png'
     };
 
     res.render('meal', {
@@ -46,7 +46,7 @@ exports.showWinJs = function (req, res, next) {
         id:         id,
         title:      meals[id],
         url:        config.rootUrl + 'winjs/meals/' + id,
-        imageUrl:   config.rootUrl + 'images/meals/' + id + '-full.png'
+        imageUrl:   config.rootUrl + 'images/games/' + id + '-full.png'
     };
 
     /*
