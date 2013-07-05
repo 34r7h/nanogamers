@@ -2,13 +2,13 @@
 var config          = require('../config');
 
 var meals = {
-    cheeseburger:   "Cheeseburger",
-    chinese:        "Chinese",
-    french:         "French",
-    hotdog:         "Hot Dog",
-    indian:         "Indian",
-    italian:        "Italian",
-    pizza:          "Pizza"
+    game1:   "Game 1",
+    game2:        "Game 2",
+    game3:         "Game 3",
+    game4:         "Game 4",
+    game5:         "Game 5",
+    game6:        "Game 6",
+    game7:          "Game 7"
 };
 
 exports.show = function (req, res, next) {
@@ -49,9 +49,11 @@ exports.showWinJs = function (req, res, next) {
         imageUrl:   config.rootUrl + 'images/meals/' + id + '-full.png'
     };
 
+    /*
     res.render('meal', {
         appId:          '438749336206495',
         appNamespace:   'winjsscrumptious',
         meal:           meal
     });
+*/
 };
