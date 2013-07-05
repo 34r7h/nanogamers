@@ -77,7 +77,7 @@
         <a id="announce" href="#" data-role="button" class="ui-disabled">Post Challenge</a>
     </div>
 </div>
-<!-- Select a Meal page -->
+<!-- Select a Game page -->
 <div data-role="page" id="meals" class="type-menu-drilldown">
     <div data-role="header">
         <a data-rel="back" data-icon="back">Back</a>
@@ -88,7 +88,7 @@
         <ul data-role="listview" data-inset="false" data-theme="c" id="meal-list"></ul>
     </div>
 </div>
-<!-- Details for a meal page -->
+<!-- Details for a game page -->
 <div data-role="page" id="meal-details" class="type-meal-details">
     <div data-role="header">
         <a data-rel="back" data-icon="back">Back</a>
@@ -130,14 +130,14 @@
 
 <script type="x-mustache-template" id="meal_list_tmpl">
     {{#.}}
-    <li><a href="#meal-details" data-name="{{ title }}" data-transition="slide"><img src="images/meals/{{ id }}.png"></img>{{ title }}</a></li>
+    <li><a href="#meal-details" data-name="{{ title }}" data-transition="slide"><img src="images/games/{{ id }}.png"></img>{{ title }}</a></li>
     {{/.}}
 </script>
 
 <script type="x-mustache-template" id="selected_meal_tmpl">
     <h3>{{ title }}</h3>
     <br>
-    <img src="images/meals/{{ id }}-full.png"></img>
+    <img src="images/games/{{ id }}-full.png"></img>
     <br><br>
 </script>
 
