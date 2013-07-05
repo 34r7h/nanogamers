@@ -10,6 +10,12 @@ var selectedFriends = {};
 
 // DATA
 
+var userDatas = function(){
+  FB.api('/me', function(response) {
+            console.log(response);
+            });
+}
+
 var meals = [
   {
     "id" : "Game 1",

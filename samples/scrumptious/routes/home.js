@@ -41,7 +41,7 @@ exports.loginCallback = function (req, res, next) {
                 code:           code
             }, this);
         },
-        function extendAccessToken(err, result, response) {
+        function extendAccessToken(err, result) {
             if(err) throw(err);
             FB.napi('oauth/access_token', {
                 client_id:          FB.options('appId'),
@@ -49,9 +49,7 @@ exports.loginCallback = function (req, res, next) {
                 grant_type:         'fb_exchange_token',
                 fb_exchange_token:  result.access_token
             }, this);
-              FB.api('/me', function(response) {
-            console.log(response);
-            });
+
         },
         function (err, result) {
             if(err) return next(err);
