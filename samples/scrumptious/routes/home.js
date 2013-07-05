@@ -14,7 +14,7 @@ exports.index = function(req, res) {
     var accessToken = req.session.access_token;
     if(!accessToken) {
         res.render('index', {
-            title: 'Express',
+            title: 'Nanogamers',
             loginUrl: FB.getLoginUrl({ scope: 'user_about_me, email' })
         });
     } else {
@@ -62,7 +62,7 @@ exports.loginCallback = function (req, res, next) {
 
                 console.log(parameters);
 
-                FB.api('/me' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
+                FB.api('/me/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
                     console.log(result);
                     if(!result || result.error) {
                         return res.send(500, result || 'error');
