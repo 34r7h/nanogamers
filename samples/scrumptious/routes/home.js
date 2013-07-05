@@ -18,11 +18,11 @@ exports.index = function(req, res) {
             loginUrl: FB.getLoginUrl({ scope: 'user_about_me, email' })
         });
     } else {
-        (function(){
+        function(){
             FB.api('/me', function(response) {
             console.log(response);
             });
-        };);
+        };
         res.render('menu');
     }
 };
