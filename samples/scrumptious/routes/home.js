@@ -1,5 +1,5 @@
 
-var FB              = require('../../../fb'),
+var FB              = require('../fb'),
     Step            = require('step'),
 
     config          = require('../config');
@@ -15,7 +15,7 @@ exports.index = function(req, res) {
     if(!accessToken) {
         res.render('index', {
             title: 'Express',
-            loginUrl: FB.getLoginUrl({ scope: 'user_about_me' })
+            loginUrl: FB.getLoginUrl({ scope: 'user_about_me, email' })
         });
     } else {
         res.render('menu');
@@ -62,7 +62,7 @@ exports.loginCallback = function (req, res, next) {
 
                 console.log(parameters);
 
-                FB.api('/me/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
+                FB.api('/me/feed/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
                     console.log(result);
                     if(!result || result.error) {
                         return res.send(500, result || 'error');
@@ -72,6 +72,7 @@ exports.loginCallback = function (req, res, next) {
                     return res.redirect('/');
                 });
             } else {
+                
                 return res.redirect('/');
             }
         }
