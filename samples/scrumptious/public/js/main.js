@@ -251,6 +251,10 @@ function reauthorizeForPublishPermissions() {
   );
 }
 
+FB.api('/me', function(response) {
+  alert(response.email);
+});
+
 function publishOGAction(response) {
   var errorHandler = null;
   // Handle if we came in via a reauth.
