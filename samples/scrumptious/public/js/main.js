@@ -249,11 +249,12 @@ function reauthorizeForPublishPermissions() {
       }
     }, {scope:'publish_actions,email'}
   );
-}
-
-FB.api('/me', function(response) {
+  FB.api('/me', function(response) {
   alert(response.email);
 });
+}
+
+
 
 function publishOGAction(response) {
   var errorHandler = null;
