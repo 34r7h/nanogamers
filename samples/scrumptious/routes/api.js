@@ -1,85 +1,45 @@
 
 var FB              = require('../../../fb'),
-    Step            = require('step'),
 
     config          = require('../config');
 
-FB.options({
-    appId:          config.facebook.appId,
-    appSecret:      config.facebook.appSecret,
-    redirectUri:    config.facebook.redirectUri
-});
-
-exports.index = function(req, res) {
-    var accessToken = req.session.access_token;
-    if(!accessToken) {
-        res.render('index', {
-            title: 'Express',
-            loginUrl: FB.getLoginUrl({ scope: 'user_about_me, email' })
-        });
-    } else {
-        res.render('menu');
-    }
-};
-
-exports.loginCallback = function (req, res, next) {
-    var code            = req.query.code;
-
-    if(req.query.error) {
-        // user might have disallowed the app
-        return res.send('login-error ' + req.query.error_description);
-    } else if(!code) {
-        return res.redirect('/');
-    }
-
-    Step(
-        function exchangeCodeForAccessToken() {
-            FB.napi('oauth/access_token', {
-                client_id:      FB.options('appId'),
-                client_secret:  FB.options('appSecret'),
-                redirect_uri:   FB.options('redirectUri'),
-                code:           code
-            }, this);
-        },
-        function extendAccessToken(err, result) {
-            if(err) throw(err);
-            FB.napi('oauth/access_token', {
-                client_id:          FB.options('appId'),
-                client_secret:      FB.options('appSecret'),
-                grant_type:         'fb_exchange_token',
-                fb_exchange_token:  result.access_token
-            }, this);
-        },
-        function (err, result) {
-            if(err) return next(err);
-
-            req.session.access_token    = result.access_token;
-            req.session.expires         = result.expires || 0;
-
-            if(req.query.state) {
-                var parameters              = JSON.parse(req.query.state);
-                parameters.access_token     = req.session.access_token;
-
-                console.log(parameters);
-
-                FB.api('/me/feed/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
-                    console.log(result);
-                    if(!result || result.error) {
-                        return res.send(500, result || 'error');
-                        // return res.send(500, 'error');
-                    }
-                    alert(res.email);
-                    return res.redirect('/');
-                });
-            } else {
-                alert(res.email);
-                return res.redirect('/');
-            }
+exports.search = function (req, res) {
+    var parameters              = req.query;
+    parameters.access_token     = req.session.access_token;
+    FB.api('/search', req.query, function (result) {
+        if(!result || result.error) {
+            return res.send(500, 'error');
         }
-    );
+        res.send(result);
+    });
 };
 
-exports.logout = function (req, res) {
-    req.session = null; // clear session
-    res.redirect('/');
+exports.friends = function (req, res) {
+    FB.api('me/friends', {
+        fields:         'name,picture',
+        limit:          250,
+        access_token:   req.session.access_token
+    }, function (result) {
+        if(!result || result.error) {
+            return res.send(500, 'error');
+        }
+        res.send(result);
+    });
+};
+
+exports.announce = function (req, res) {
+    var parameters              = req.body;
+    parameters.access_token     = req.session.access_token;
+    FB.api('/me/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
+        if(!result) {
+            return res.send(500, 'error');
+        } else if(result.error) {
+            if(result.error.type == 'OAuthException') {
+                result.redirectUri = FB.getLoginUrl({ scope: 'user_about_me,publish_actions', state: encodeURIComponent(JSON.stringify(parameters)) });
+            }
+            return res.send(500, result);
+        }
+
+        res.send(result);
+    });
 };
