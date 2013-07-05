@@ -153,27 +153,5 @@
     {{/.}}
 </script>
 
-<script type="text/javascript">
-
-window.fbAsyncInit = function() {
-    jQuery(document).trigger('FBSDKLoaded');
-};
-
-  
-
-(function($) {
-    $(document).bind('FBSDKLoaded', function() {
-        FB.api('/me', function(response) {
-        console.log(response);
-        });
-        //Code using the FB object goes here.
-    });
-
-})(jQuery);
-      
-</script>
-
-
-
 </body>
         </html>
