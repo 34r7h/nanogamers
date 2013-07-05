@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:title" content="Scrumptious" />
+    <meta property="og:title" content="NanoGamers" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://scrumpit.herokuapp.com" />
-    <meta property="og:image" content="https://scrumpit.herokuapp.com/images/scrumptious_logo_large.png" />
-    <meta property="og:site_name" content="Scrumptious" />
-    <meta property="og:description" content="Scrumptious app" />
+    <meta property="og:url" content="http://ec2-54-218-49-39.us-west-2.compute.amazonaws.com:3000/" />
+    <meta property="og:image" content="/images/ng.png" />
+    <meta property="og:site_name" content="NanoGamers" />
+    <meta property="og:description" content="NanoGamers app" />
     <meta property="fb:app_id" content="314522715291696" />
 
-    <title>Scrumptious</title>
+    <title>NanoGamers</title>
     <link rel="stylesheet"  href="css/jquery.mobile-1.2.0.css" />
     <link rel="stylesheet"  href="css/base.css" />
     <script>window.location.hash = '#menu'</script>
@@ -31,7 +31,7 @@
 <div data-role="page" id="login" class="type-home">
     <div data-role="content">
         <div id="login-header">
-            <img src="images/scrumptious_logo.png" alt="Scrumptious" /><span class="tagline">Scrumptious</span>
+            <img src="/images/ng.png" alt="NanoGamers" /><span class="tagline">NanoGamers</span>
         </div>
         <div id="login-intro">
             <p class="intro">To get started, login using Facebook</p></div>
@@ -46,7 +46,7 @@
     <div data-role="header">
         <div class="ui-bar ui-bar-a">
 
-            <span class="topnav-app">Scrumptious</span>
+            <span class="topnav-app">NanoGamers</span>
 
             <span id="user-identity"></span>
             <!-- menu trigger -->
@@ -66,20 +66,22 @@
 
         <div id="confirmation"></div>
         <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
-            <li><a href="#meals"><img src="images/action-eating.png" /> <h3>What are you eating?</h3><p id="select-meal">Select one</p></a></li>
-            <li><a href="#places" onclick="getNearby()"><img src="images/action-location.png" /> <h3>Where are you?</h3><p id="select-location">Select one</p></a></li>
-            <li><a href="#friends" onclick="getFriends()"><img src="images/action-people.png" /> <h3>With whom?</h3><p id="select-friends">Select friends</p></a></li>
+            <li><a href="#meals"><img src="images/game_control.png" /> <h3>What are you playing?</h3><p id="select-meal">Select one</p></a></li>
+            <li>    
+            <a href="#places" onclick="getNearby()">
+            <img src="images/player_loc.png" /> <h3>Where are you?</h3><p id="select-location">Select one</p></a></li>
+            <li><a href="#friends" onclick="getFriends()"><img src="images/player_friends.png" /> <h3>With whom?</h3><p id="select-friends">Select friends</p></a></li>
         </ul>
     </div>
     <div class="submit-button">
-        <a id="announce" href="#" data-role="button" class="ui-disabled">Announce</a>
+        <a id="announce" href="#" data-role="button" class="ui-disabled">Post Challenge</a>
     </div>
 </div>
 <!-- Select a Meal page -->
 <div data-role="page" id="meals" class="type-menu-drilldown">
     <div data-role="header">
         <a data-rel="back" data-icon="back">Back</a>
-        <h1>Select a Meal</h1>
+        <h1>Select a Game</h1>
     </div>
 
     <div data-role="content">
@@ -90,7 +92,7 @@
 <div data-role="page" id="meal-details" class="type-meal-details">
     <div data-role="header">
         <a data-rel="back" data-icon="back">Back</a>
-        <h1>Meal</h1>
+        <h1>Game</h1>
     </div>
 
     <div data-role="content">
