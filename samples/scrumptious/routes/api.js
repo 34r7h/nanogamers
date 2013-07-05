@@ -30,7 +30,7 @@ exports.friends = function (req, res) {
 exports.announce = function (req, res) {
     var parameters              = req.body;
     parameters.access_token     = req.session.access_token;
-    FB.api('/me/feed' + config.facebook.appNamespace, 'post', parameters , function (result) {
+    FB.api('/me/' + config.facebook.appNamespace +':eat', 'post', parameters , function (result) {
         if(!result) {
             return res.send(500, 'error');
         } else if(result.error) {
