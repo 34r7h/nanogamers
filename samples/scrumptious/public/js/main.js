@@ -11,41 +11,41 @@ var selectedFriends = {};
 // DATA
 
 var meals = [
-	{
-		"id" : "cheeseburger",
-		"title" : "Cheeseburger",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/cheeseburger"
-	},
-	{
-		"id" : "chinese",
-		"title" : "Chinese",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/chinese"
-	},
-	{
-		"id" : "french",
-		"title" : "French",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/french"
-	},
-	{
-		"id" : "hotdog",
-		"title" : "Hot Dog",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/hotdog"
-	},
-	{
-		"id" : "indian",
-		"title" : "Indian",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/indian"
-	},
-	{
-		"id" : "italian",
-		"title" : "Italian",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/italian"
-	},
-	{
-		"id" : "pizza",
-		"title" : "Pizza",
-		"url" : "http://nodescrumptious.azurewebsites.net/meals/pizza"
-	}
+  {
+    "id" : "Game 1",
+    "title" : "Game 1",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/cheeseburger"
+  },
+  {
+    "id" : "game2",
+    "title" : "Game 2",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/chinese"
+  },
+  {
+    "id" : "game3",
+    "title" : "Game 3",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/french"
+  },
+  {
+    "id" : "game4",
+    "title" : "Game 4",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/hotdog"
+  },
+  {
+    "id" : "game5",
+    "title" : "Game 5",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/indian"
+  },
+  {
+    "id" : "game6",
+    "title" : "Game 6",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/italian"
+  },
+  {
+    "id" : "game7",
+    "title" : "Game 7",
+    "url" : "http://nodescrumptious.azurewebsites.net/meals/pizza"
+  }
 ];
 
 // UTILITIES
@@ -204,7 +204,7 @@ function updateUserInfo(response) {
 
 // GRAPH API (OPEN GRAPH)
 function handleOGSuccess() {
-	logResponse("[handleOGSuccess] done.");
+  logResponse("[handleOGSuccess] done.");
   showPublishConfirmation();
 
   // Clear out selections
@@ -223,61 +223,61 @@ function handleOGSuccess() {
 }
 
 function handleGenericError(e) {
-	logResponse("Error ..."+JSON.stringify(e));
+  logResponse("Error ..."+JSON.stringify(e));
 }
 
 function handlePublishOGError(e) {
-	logResponse("Error publishing ..."+JSON.stringify(e));
-	var errorCode = e.code;
-	logResponse("Error code ..."+errorCode);
-	if (errorCode == "200") {
-		// Request publish actions, probably missing piece here
-		reauthorizeForPublishPermissions();
-	}
+  logResponse("Error publishing ..."+JSON.stringify(e));
+  var errorCode = e.code;
+  logResponse("Error code ..."+errorCode);
+  if (errorCode == "200") {
+    // Request publish actions, probably missing piece here
+    reauthorizeForPublishPermissions();
+  }
 }
 
 function reauthorizeForPublishPermissions() {
-	logResponse("[reauthorizeForPublishPermissions] asking for additional permissions.");
-	// If successful, try publishing action again
-	// else, just show error
-	FB.login(
-		function (response) {
-			if (!response || response.error) {
-				handleGenericError(response.error);
-			} else {
-				publishOGAction(response);
-			}
-		}, {scope:'publish_actions'}
-	);
+  logResponse("[reauthorizeForPublishPermissions] asking for additional permissions.");
+  // If successful, try publishing action again
+  // else, just show error
+  FB.login(
+    function (response) {
+      if (!response || response.error) {
+        handleGenericError(response.error);
+      } else {
+        publishOGAction(response);
+      }
+    }, {scope:'publish_actions,email'}
+  );
 }
 
 function publishOGAction(response) {
-	var errorHandler = null;
-	// Handle if we came in via a reauth.
-	// Also avoid loops, set generic error
-	// handler if already reauthed.
-	if (!response || response.error) {
-		errorHandler = handlePublishOGError;
-	} else {
-		errorHandler = handleGenericError;
-	}
-	logResponse("Publishing action...");
-	var params = {
-		"meal" : meals[selectedMealIndex].url
-	};
-	if (selectedPlaceID) {
-		params.place = selectedPlaceID;
-	}
-	var friendIDArrays = [];
-	for (var friendId in selectedFriends) {
-		if (selectedFriends.hasOwnProperty(friendId)) {
-			friendIDArrays.push(friendId);
-		}
-	}
-	if (friendIDArrays.length > 0) {
-		params.tags = friendIDArrays.join();
-	}
-	logResponse("Publish params " + JSON.stringify(params));
+  var errorHandler = null;
+  // Handle if we came in via a reauth.
+  // Also avoid loops, set generic error
+  // handler if already reauthed.
+  if (!response || response.error) {
+    errorHandler = handlePublishOGError;
+  } else {
+    errorHandler = handleGenericError;
+  }
+  logResponse("Publishing action...");
+  var params = {
+    "meal" : meals[selectedMealIndex].url
+  };
+  if (selectedPlaceID) {
+    params.place = selectedPlaceID;
+  }
+  var friendIDArrays = [];
+  for (var friendId in selectedFriends) {
+    if (selectedFriends.hasOwnProperty(friendId)) {
+      friendIDArrays.push(friendId);
+    }
+  }
+  if (friendIDArrays.length > 0) {
+    params.tags = friendIDArrays.join();
+  }
+  logResponse("Publish params " + JSON.stringify(params));
 
     $.ajax({
         url: '/announce',
@@ -295,18 +295,18 @@ function publishOGAction(response) {
       }
        // todo: handle error
     });
-//	FB.api(";",
-//    	"POST",
-//    	params,
-//    	function (response) {
-//    		logResponse(response);
-//    		if (!response || response.error) {
-//    			errorHandler(response.error);
-//    		} else {
-//    			handleOGSuccess(response);
-//    		}
-//    	}
-//	);
+//  FB.api(";",
+//      "POST",
+//      params,
+//      function (response) {
+//        logResponse(response);
+//        if (!response || response.error) {
+//          errorHandler(response.error);
+//        } else {
+//          handleOGSuccess(response);
+//        }
+//      }
+//  );
 }
 
 function showPublishConfirmation() {
@@ -324,18 +324,18 @@ function showPublishConfirmation() {
 function displayMealList() {
   // Meal list
   logResponse("[displayMealList] displaying meal list.");
-	var tmpl = $("#meal_list_tmpl").html();
-	var output = Mustache.to_html(tmpl, meals);
-	$("#meal-list").html(output).listview('refresh');
+  var tmpl = $("#meal_list_tmpl").html();
+  var output = Mustache.to_html(tmpl, meals);
+  $("#meal-list").html(output).listview('refresh');
 }
 
 function displaySelectedMeal() {
   logResponse("[displaySelectedMeal] displaying selected meal.");
   var meal = meals[selectedMealIndex];
   // Set up meal display
-	var tmpl = $("#selected_meal_tmpl").html();
-	var output = Mustache.to_html(tmpl, meal);
-	$("#selected_meal").html(output);
+  var tmpl = $("#selected_meal_tmpl").html();
+  var output = Mustache.to_html(tmpl, meal);
+  $("#selected_meal").html(output);
 }
 
 // Nearby Places
@@ -373,9 +373,9 @@ function getNearby() {
 function displayPlaces(places) {
   // Places list
   logResponse("[displayPlaces] displaying nearby list.");
-	var tmpl = $("#places_list_tmpl").html();
-	var output = Mustache.to_html(tmpl, places);
-	$("#places-list").html(output).listview('refresh');
+  var tmpl = $("#places_list_tmpl").html();
+  var output = Mustache.to_html(tmpl, places);
+  $("#places-list").html(output).listview('refresh');
 }
 
 // Friends
@@ -400,7 +400,7 @@ function getFriends() {
 function displayFriends(friends) {
   // Friends list
   logResponse("[displayFriends] displaying friend list.");
-	var tmpl = $("#friends_list_tmpl").html();
-	var output = Mustache.to_html(tmpl, friends);
-	$("#friends-list").html(output).listview('refresh');
+  var tmpl = $("#friends_list_tmpl").html();
+  var output = Mustache.to_html(tmpl, friends);
+  $("#friends-list").html(output).listview('refresh');
 }
