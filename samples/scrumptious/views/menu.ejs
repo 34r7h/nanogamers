@@ -154,14 +154,10 @@
 </script>
 
 <script type="text/javascript">
-(function (d) {
-        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement('script'); js.id = id; js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-        ref.parentNode.insertBefore(js, ref);
-    } (document));
-    FB.init({
+
+window.fbAsyncInit = function() {
+
+   FB.init({
         appId  : 143751365821284,
         status : true, // check login status
         cookie : true, // enable cookies to allow the server to access the session
@@ -169,10 +165,28 @@
         channelURL : 'http://ec2-54-218-49-39.us-west-2.compute.amazonaws.com:3000/channel.html', // channel.html file
         oauth  : true // enable OAuth 2.0
       });
-      
-FB.api('/me', function(response) {
-  console.log(response);
+    jQuery(document).trigger('FBSDKLoaded');
+
+};
+  // Load the SDK Asynchronously
+  (function (d) {
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=269187653191150";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+
+(function($) {
+    $(document).bind('FBSDKLoaded', function() {
+        FB.api('/me', function(response) {
+        console.log(response);
 });
+        //Code using the FB object goes here.
+    });
+
+})(jQuery);
+      
 </script>
 
 
