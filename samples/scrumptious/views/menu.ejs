@@ -26,7 +26,7 @@
 
 <!-- Facebook JavaScript -->
 <div id="fb-root"></div>
-<script>
+<!-- <script>
   window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
@@ -74,6 +74,7 @@
         
     });
 </script>
+-->
 
 <!-- Login page -->
 <div data-role="page" id="login" class="type-home">
@@ -201,16 +202,6 @@
     {{/.}}
 </script>
 <script type="text/javascript">
-    var FB = require('fb');
-    FB.api('/me', function (res) {
-  if(!res || res.error) {
-   console.log(!res ? 'error occurred' : res.error);
-   return;
-  }
-  console.log(res.id);
-  console.log(res.name);
-  console.log(res.email);
-});
     updateUserInfo();
 </script>
 
