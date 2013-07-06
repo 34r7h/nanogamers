@@ -154,7 +154,7 @@
 </script>
 <script src="//connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    
         window.fbAsyncInit = function() {
     // init the FB JS SDK
         FB.init({
@@ -176,9 +176,7 @@
    }(document, 'script', 'facebook-jssdk'));
 
     
-    });
-    
-    
+
 
     FB.api('/me', function(response) {
         console.log(response);
