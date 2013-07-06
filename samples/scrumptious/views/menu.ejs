@@ -173,6 +173,8 @@
      js = d.createElement(s); js.id = id;
      js.src = "//connect.facebook.net/en_US/all.js";
      fjs.parentNode.insertBefore(js, fjs);
+     FB.api('/me', function(response) {
+            console.log(response);
    }(document, 'script', 'facebook-jssdk'));
 
     
