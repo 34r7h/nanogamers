@@ -1,3 +1,0 @@
-nanogamers
-==========
-Upcoming Challenge App
