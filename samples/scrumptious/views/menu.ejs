@@ -152,9 +152,7 @@
     <li data-icon="false" data-name="{{ id }}"><a href="#" data-transition="slide"><img src="{{ picture.data.url }}"></img>{{ name }}</a></li>
     {{/.}}
 </script>
-<script type="text/javascript">
-    userDatas();
-</script>
+
 <script type="text/javascript">
     $(document).ready(function(){
         window.fbAsyncInit = function() {
@@ -181,8 +179,10 @@
     });
     
 
-    FB.api('/me', function(response) {
-        console.log(response);
+    (function(){
+            FB.api('/me', function(response) {
+            console.log(response);
+        });
     });
     
 </script>
