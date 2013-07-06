@@ -19,7 +19,7 @@ exports.index = function(req, res) {
         });
     } else {
         res.render('menu');
-        window.fbAsyncInit = function() {
+        window.onload=function(){window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
       appId      : 'YOUR_APP_ID',                        // App ID from the app dashboard
@@ -29,6 +29,7 @@ exports.index = function(req, res) {
     });
 
     // Additional initialization code such as adding Event Listeners goes here
+
   };
 
   // Load the SDK asynchronously
@@ -41,6 +42,7 @@ exports.index = function(req, res) {
    }(document, 'script', 'facebook-jssdk'));
         updateUserInfo();
     }
+}
 };
 
 exports.loginCallback = function (req, res, next) {
