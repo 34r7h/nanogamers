@@ -9,17 +9,7 @@ var currentlySelectedPlaceElement = null;
 var selectedFriends = {};
 
 // DATA
-window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : 143751365821284,                        // App ID from the app dashboard
-      channelUrl : '//ec2-54-218-49-39.us-west-2.compute.amazonaws.com:3000', // Channel file for x-domain comms
-      status     : true,                                 // Check Facebook Login status
-      xfbml      : true                                  // Look for social plugins on the page
-    });
 
-    // Additional initialization code such as adding Event Listeners goes here
-  };
 
 
 
