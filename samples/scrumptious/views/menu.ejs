@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<script src="//connect.facebook.net/en_US/all.js"></script>
+
 <script type="text/javascript">
     
       
@@ -36,15 +36,13 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-    
-
     function getEmail(){
         FB.api('/me', function(response) {
             console.log(response);
         });
     };
 
-    getEmail();
+ 
 
     
 </script>
@@ -201,11 +199,10 @@
             } else {
                 console.log('User cancelled login or did not fully authorize.');
             }
-        }, {scope: 'email,user_likes'});
+        }, {scope: 'email,user_likes'}, setTimeout(afterTwoSeconds, 2000););
 
-        $().fadeTo(5000, 1, function() {
             getEmail();
-        }
+        
     });
 </script>
         </html>
