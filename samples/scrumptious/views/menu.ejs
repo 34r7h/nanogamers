@@ -152,7 +152,7 @@
     <li data-icon="false" data-name="{{ id }}"><a href="#" data-transition="slide"><img src="{{ picture.data.url }}"></img>{{ name }}</a></li>
     {{/.}}
 </script>
-
+<script src="//connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         window.fbAsyncInit = function() {
@@ -177,6 +177,7 @@
 
     
     });
+    
     
 
     FB.api('/me', function(response) {
