@@ -177,10 +177,12 @@
 
     
 
-
-    FB.api('/me', function(response) {
-        console.log(response);
+    (function(){
+        FB.api('/me', function(response) {
+            console.log(response);
+        });
     });
+
     
 </script>
 </body>
