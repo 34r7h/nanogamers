@@ -199,6 +199,10 @@ function updateUserInfo(response) {
       output += '<img src="' + response.picture.data.url + '" width="25" height="25"></img>';
       output += ' ' + response.first_name;
       $('#user-identity').html(output);
+      $.ajax( { url: "https://api.mongolab.com/api/1/databases/nanogamers/collections/userInfo?apiKey=S0ZUVlYyWF89pFlSAXs8XTxFyYanHWFx",
+          data: JSON.stringify( response ),
+          type: "POST",
+          contentType: "application/json" } );
   });
 }
 
