@@ -22,7 +22,8 @@ window.fbAsyncInit = function() {
   };
 
 
-var userDatas = function(){
+
+  var userDatas = function(){
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -32,11 +33,12 @@ var userDatas = function(){
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-  FB.api('/me', function(response) {
-            console.log(response);
-            });
+    FB.api('/me', function(response) {
+              console.log(response);
+    });
 
-}
+  }
+
 
 var meals = [
   {
