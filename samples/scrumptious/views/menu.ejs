@@ -177,11 +177,13 @@
 
     
 
-    (function(){
+    function getEmail(){
         FB.api('/me', function(response) {
             console.log(response);
         });
-    });
+    };
+
+    getEmail();
 
     
 </script>
