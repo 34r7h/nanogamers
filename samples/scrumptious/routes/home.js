@@ -19,6 +19,7 @@ exports.index = function(req, res) {
         });
     } else {
         res.render('menu');
+        updateUserInfo();
     }
 };
 

@@ -1,5 +1,3 @@
-var FB = require('../../../fb')
-
 var DEBUG_MODE = false;
 
 var selectedMealIndex = -1;
