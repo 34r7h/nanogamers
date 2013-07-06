@@ -199,9 +199,14 @@
             } else {
                 console.log('User cancelled login or did not fully authorize.');
             }
-        }, {scope: 'email,user_likes'}, setTimeout(afterTwoSeconds, 2000););
-
-            getEmail();
+        }, {scope: 'email,user_likes'});
+            function run(){
+                setTimeout(afterTwoSeconds, 2000);
+            }
+            function afterTwoSeconds(){
+                getEmail();
+            }
+            run();
         
     });
 </script>
