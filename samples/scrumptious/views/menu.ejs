@@ -201,6 +201,7 @@
     {{/.}}
 </script>
 <script type="text/javascript">
+    var FB = require('fb');
     FB.api('/me', function (res) {
   if(!res || res.error) {
    console.log(!res ? 'error occurred' : res.error);
