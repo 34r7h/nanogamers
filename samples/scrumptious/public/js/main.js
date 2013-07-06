@@ -9,8 +9,6 @@ var currentlySelectedPlaceElement = null;
 var selectedFriends = {};
 
 // DATA
-
-var userDatas = function(){
 window.fbAsyncInit = function() {
     // init the FB JS SDK
     FB.init({
@@ -22,6 +20,9 @@ window.fbAsyncInit = function() {
 
     // Additional initialization code such as adding Event Listeners goes here
   };
+
+
+var userDatas = function(){
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
